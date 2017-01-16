@@ -163,6 +163,9 @@ Page({
     if(beat === 4 || beat === 8 || beat === 16) {
       // 某些节奏展示成16分更好
       len = 16;
+    } else if (beat === 3 || beat === 6 || beat === 9 || beat === 12) {
+      // 展示成12分
+      len = 12;
     }
     for(var i = 0; i < len; i++) {
       beatArr.push((i + 1) * 360 / len)
@@ -195,7 +198,7 @@ Page({
         note: playQueue[0].note
       })
     }
-    
+
     this.setData({
       anm: anm
     })
