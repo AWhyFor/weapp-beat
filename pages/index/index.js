@@ -175,6 +175,7 @@ Page({
   // tab开始展示的逻辑
   onShow: function() {
     // 从存储取数据
+    var anm = wx.getStorageSync('anm') || 0;
     var noteStr = wx.getStorageSync('noteStr') || '4/4';
     var noteArr = noteStr.split('/');
 
@@ -195,6 +196,10 @@ Page({
       })
     }
     
+    this.setData({
+      anm: anm
+    })
+
     this.setBeatArr();
   },
   // 切换到其他tab时，停止

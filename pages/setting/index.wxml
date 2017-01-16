@@ -1,28 +1,56 @@
 <!--index.wxml-->
 <view class="ctn">
-    <div class="cells">
-        <div class="cell">
-            <div class="cell__bd">
-                <p>BPM</p>
-            </div>
-        </div>
-        <div class="cell cell-s">
-            <slider class="cell-slider" bindchange="bpmchange" left-icon="cancel" right-icon="success_no_circle" value="{{bpm}}" min="40" max="160" show-value="true"/>
-        </div>
+  <scroll-view scroll-y="true" style="height: 100%;">
+    <div class="cell">
+      <div class="page__hd">
+        <p class="page__title">BPM<span>每分钟节拍数</span></p>
+      </div>
+      <div class="page__bd">
+        <slider class="cell-slider" bindchange="bpmchange" left-icon="cancel" right-icon="success_no_circle" value="{{bpm}}" min="40" max="160" show-value="true"/>
+      </div>
     </div>
-    <div class="cells">
-        <div class="cell">
-            <div class="cell__bd">
-                <p>拍号</p>
-            </div>
-        </div>
-        <div class="cell cell-s">
-            <radio-group class="radio-group" bindchange="radioChange">
-              <label class="radio" wx:key wx:for="{{notes}}">
-                <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+    <div class="cell">
+      <div class="page__hd">
+        <p class="page__title">拍号<span>分类  <switch checked bindchange="detailChange"/></span></p>
+        <p class="page__desc"></p>
+      </div>
+      <div class="page__bd" wx:if="{{showDetail}}">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <div wx:key wx:for="{{detailNotes}}" wx:for-item="detailNotesItem">
+            <div class="page__desc">{{detailNotesItem.name}}</div>
+            <div class="radio-wrap">
+              <label class="radio" wx:key wx:for="{{detailNotesItem.lists}}">
+                <radio value="{{item}}" checked="{{note === item}}"/>{{item}}
               </label>
-            </radio-group>
-        </div>
+            </div>
+          </div>
+        </radio-group>
+      </div>
+      <div class="page__bd" wx:else>
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:key wx:for="{{notes}}">
+            <radio value="{{item}}" checked="{{note === item}}"/>{{item}}
+          </label>
+        </radio-group>
+      </div>
     </div>
+    <div class="cell">
+      <div class="page__hd">
+        <p class="page__title">指针动画</p>
+      </div>
+      <div class="page__bd">
+        <radio-group class="radio-group" bindchange="anmChange">
+          <label class="radio">
+            <radio value="0" checked="{{anm === 0}}"/>节奏感
+          </label>
+          <label class="radio">
+            <radio value="1" checked="{{anm === 1}}"/>匀速
+          </label>
+          <label class="radio">
+            <radio value="2" checked="{{anm === 2}}"/>跳动
+          </label>
+        </radio-group>
+      </div>
+    </div>
+  </scroll-view>
 </view>
-

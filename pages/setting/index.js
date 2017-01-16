@@ -4,29 +4,79 @@ var app = getApp()
 Page({
   data: {
     bpm: 96,
+    showDetail: true,
     notes: [
-      {name: '1/2', value: '1/2'},
-      {name: '1/4', value: '1/4'},
-      {name: '2/2', value: '2/2'},
-      {name: '2/4', value: '2/4'},
-      {name: '2/3', value: '2/3'},
-      {name: '2/5', value: '2/5'},
-      {name: '3/4', value: '3/4'},
-      {name: '3/8', value: '3/8'},
-      {name: '3/16', value: '3/16'},
-      {name: '4/4', value: '4/4'},
-      {name: '4/8', value: '4/8'},
-      {name: '5/4', value: '5/4'},
-      {name: '5/8', value: '5/8'},
-      {name: '6/4', value: '6/4'},
-      {name: '6/8', value: '6/8'},
-      {name: '7/4', value: '7/4'},
-      {name: '7/8', value: '7/8'},
-      {name: '9/8', value: '9/8'},
-      {name: '11/8', value: '11/8'},
-      {name: '12/8', value: '12/8'},
-      {name: '14/16', value: '14/16'}
+      '1/2',
+      '1/4',
+      '2/2',
+      '2/4',
+      '2/3',
+      '2/5',
+      '3/4',
+      '3/8',
+      '3/16',
+      '4/4',
+      '4/8',
+      '5/4',
+      '5/8',
+      '6/4',
+      '6/8',
+      '7/4',
+      '7/8',
+      '9/8',
+      '11/8',
+      '12/8',
+      '14/16'
     ],
+    detailNotes: [{
+      name: '戏曲',
+      lists: [
+        '1/2',
+        '1/4'
+      ]
+    }, {
+      name: '颂歌 进行曲',
+      lists: [
+        '2/2',
+        '2/3',
+        '2/4',
+        '2/5'
+      ]
+    }, {
+      name: '圆舞曲',
+      lists: [
+        '3/4',
+        '3/8',
+        '3/16',
+        '6/4',
+        '6/8'
+      ]
+    }, {
+      name: '流行音乐',
+      lists: [
+        '2/4',
+        '4/4',
+        '4/8',
+        '6/8'
+      ]
+    }, {
+      name: '常用混拍',
+      lists: [
+        '5/4',
+        '5/8',
+        '7/4',
+        '7/8',
+        '9/8'
+      ]
+    }, {
+      name: '迷之高端拍子',
+      lists: [
+        '11/8',
+        '12/8',
+        '14/16'
+      ]
+    }],
+    anm: 1,
     userInfo: {}
   },
   // bpm改变
@@ -51,24 +101,39 @@ Page({
       data: e.detail.value
     })
   },
+  // 拍号是否展示详情
+  detailChange: function(e) {
+    this.setData({
+      showDetail: e.detail.value
+    })
+  },
+  // 指针动画改变
+  anmChange: function(e) {
+    var val = parseInt(e.detail.value);
+
+    this.setData({
+      anm: val
+    })
+
+    wx.setStorage({
+      key: 'anm',
+      data: val
+    })
+  },
   onLoad: function () {
     console.log('onLoad setting')
   },
   onShow: function () {
     // 从存储取数据
     var note = wx.getStorageSync('noteStr') || '4/4';
+    var anm = wx.getStorageSync('anm') || 0;
     var notes = this.data.notes;
-    for (var i = 0, len = notes.length; i < len; i++) {
-      if (notes[i].value === note) {
-        notes[i].checked = true
-      } else {
-        notes[i].checked = false
-      }
-    }
+
     this.setData({
       bpm: wx.getStorageSync('bpm') || 96,
       note: note,
-      notes: notes
+      notes: notes,
+      anm: anm
     })
   },
   onPullDownRefresh: function(){

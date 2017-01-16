@@ -25,10 +25,20 @@
             </div>
 					</div>
 				</div>
-				<div class="point" style="transform: rotate({{ bar }}deg);   transition: all {{ time/1000 }}s;">
+
+				<div class="point" wx:if="{{anm === 0}}" style="transform: rotate({{ bar }}deg);   transition: all {{ time/1000 }}s;">
 					<div class="point-bar">
 					</div>
 				</div>
+        <div class="point" wx:if="{{anm === 1}}" style="transform: rotate({{ bar }}deg);   transition: all {{ time/1000 }}s linear;">
+          <div class="point-bar">
+          </div>
+        </div>
+        <div class="point" wx:if="{{anm === 2}}" style="transform: rotate({{ bar }}deg);">
+          <div class="point-bar">
+          </div>
+        </div>
+
 				<div class="scale-area">
           <div wx:key wx:for="{{beatArr}}">
             <div wx:if="{{item % 90 === 0 }}" class="scale orange" style="transform: rotate({{ item }}deg)"></div>

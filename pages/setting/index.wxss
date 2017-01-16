@@ -13,45 +13,65 @@ page {
   overflow: hidden;
 }
 
-.cells {
-  margin-top: 20px;
-  line-height: 1.41176471;
-  font-size: 17px;
-  overflow: hidden;
-  position: relative;
-}
-
 .cell {
-  padding: 10px 15px;
-  position: relative;
-  display: flex;
-  align-items: center;
   background: #ffffff;
-}
-.cell-s {
   display: block;
-  padding: 10px 0;
-  width: 100%;
+  margin-top: 20px;
+  padding: 20px; 
 }
-
-.cell__bd {
-  flex: 1;
-}
-
-.cell__ft {
-  text-align: right;
-  color: #999999;
+.cell:last-child {
+  margin-bottom: 20px;
 }
 
 .cell-slider {
-  margin: 0 15px;
+  margin: 0;
 }
 .radio-group {
-  margin: 0 15px;
   display: flex;
   flex-wrap: wrap;
+  font-size: 14px;
 }
 .radio-group .radio {
   width: 33.333%;
   margin: 5px 0;
+}
+.radio-group div {
+  display: block;
+  width: 100%;
+}
+
+.page__hd {
+  display:block;
+  margin-bottom: 20px;
+}
+
+.page__hd p {
+  display: block;
+}
+
+.page__title {
+    text-align: left;
+    font-size: 20px;
+    font-weight: 400;
+    display: block;
+    height: 32px;
+    line-height: 32px;
+}
+.page__title span{
+    text-align: right;
+    font-size: 14px;
+    color: #888;
+    float: right;
+}
+.page__desc {
+    margin: 10px 0 5px;
+    display: block;
+    color: #888;
+    text-align: left;
+    font-size: 14px;
+}
+
+.radio-group wx-div.radio-wrap {
+  display:flex;
+  flex-wrap:wrap;
 }
