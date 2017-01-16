@@ -1,0 +1,29 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/setting/index"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#3b3d3c",
+    "navigationBarTitleText": "节拍器",
+    "navigationBarTextStyle":"#fff"
+  },
+  "tabBar": {
+    "color": "#e5e5e5",
+    "selectedColor": "#fe5d02",
+    "backgroundColor": "#3b3d3c",
+    "borderStyle": "white",
+    "list": [{
+      "pagePath": "pages/index/index",
+      "text": "节拍器",
+      "iconPath": "img/index.png",
+      "selectedIconPath": "img/index_active.png"
+    }, {
+      "pagePath": "pages/setting/index",
+      "text": "设置",
+      "iconPath": "img/setting.png",
+      "selectedIconPath": "img/setting_active.png"
+    }]
+  }
+}

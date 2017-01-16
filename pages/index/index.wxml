@@ -1,0 +1,46 @@
+<!--index.wxml-->
+<view class="ctn">
+  <audio src="http://litten.me/weapp/beats/strong.mp3" action="{{strongAction}}"></audio>
+  <audio src="http://litten.me/weapp/beats/week.mp3" action="{{weekAction}}"></audio>
+	<section class="main">
+    <div class="bpm-part">
+      <p>BPM：<span>{{ bpm }}</span></p>
+      <p>{{beat}}/{{note}}</p>
+    </div>
+		<div class="beat-part">
+			<div class="circle-out">
+				<div class="btn" bindtap="startHandle">
+					<div class="btn-status btn-play">
+            <div class="char" wx:if="{{!isPlay}}">▶</div>
+            <div wx:elif="{{isPlay}}">
+              <div class="char">{{ count }}</div>
+              <div class="btn-wrap">
+                <div class="btn-s pause" catchtap="pauseHandle">
+                  <div class="btn-inner">||</div> 
+                </div>
+                <div class="btn-s stop" catchtap="stopHandle">
+                  <div class="btn-inner">■</div> 
+                </div>
+              </div>
+            </div>
+					</div>
+				</div>
+				<div class="point" style="transform: rotate({{ bar }}deg);   transition: all {{ time/1000 }}s;">
+					<div class="point-bar">
+					</div>
+				</div>
+				<div class="scale-area">
+          <div wx:key wx:for="{{beatArr}}">
+            <div wx:if="{{item % 90 === 0 }}" class="scale orange" style="transform: rotate({{ item }}deg)"></div>
+            <div wx:else class="scale" style="transform: rotate({{ item }}deg)"></div>
+          </div>
+				</div>
+			</div>
+		</div>
+    <div class="tips-part" wx:if="{{playQueue[curQueueIndex]}}">
+      <p>第 <span class="strong">{{ playQueue[curQueueIndex].start + 1 }}</span> 小节即将变奏</p>
+      <p>拍号：<span class="strong">{{ playQueue[curQueueIndex].beat }}/{{ playQueue[curQueueIndex].note }}</span>，BPM：<span class="strong">{{ playQueue[curQueueIndex].bpm }}</span></p>
+    </div>
+	</section>
+</view>
+

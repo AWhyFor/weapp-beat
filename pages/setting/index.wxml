@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="ctn">
+    <div class="cells">
+        <div class="cell">
+            <div class="cell__bd">
+                <p>BPM</p>
+            </div>
+        </div>
+        <div class="cell cell-s">
+            <slider class="cell-slider" bindchange="bpmchange" left-icon="cancel" right-icon="success_no_circle" value="{{bpm}}" min="40" max="160" show-value="true"/>
+        </div>
+    </div>
+    <div class="cells">
+        <div class="cell">
+            <div class="cell__bd">
+                <p>拍号</p>
+            </div>
+        </div>
+        <div class="cell cell-s">
+            <radio-group class="radio-group" bindchange="radioChange">
+              <label class="radio" wx:key wx:for="{{notes}}">
+                <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+              </label>
+            </radio-group>
+        </div>
+    </div>
+</view>
+
